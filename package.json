@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
-    "elysia": "latest"
+    "elysia": "latest",
+    "firebase-admin": "^12.1.0"
   },
   "devDependencies": {
     "bun-types": "latest",

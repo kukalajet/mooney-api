@@ -7,7 +7,8 @@
     "db:migrate": "bunx prisma migrate dev",
     "db:generate": "bunx prisma generate",
     "db:studio": "bunx prisma studio",
-    "db:seed": "bun run prisma/seed.ts"
+    "db:seed": "bun run prisma/seed.ts",
+    "auth:generate-test-token": "curl -X POST -H 'Content-Type: application/json' -d '{\"email\":\"user1@test.com\", \"password\":\"Test123!\", \"returnSecureToken\":true}' https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBe4pudzmNJkTrYHZLitXQ7jDUVNZ4Jdhw"
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",

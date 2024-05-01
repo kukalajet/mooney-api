@@ -4,4 +4,8 @@ export class AuthenticationError extends Error {
     this.name = "UnauthorizedError";
     Object.setPrototypeOf(this, AuthenticationError.prototype);
   }
+
+  toString() {
+    return this.message;
+  }
 }

@@ -2,7 +2,8 @@ import { Elysia } from "elysia";
 import { firebaseServiceKey } from "config";
 import admin from "firebase-admin";
 import type { ServiceAccount } from "firebase-admin";
-import { AuthenticationError } from "src/lib/exceptions";
+import { AuthenticationError } from "src/lib/errors/exceptions";
+import { plugin } from "src/lib/errors";
 
 const serviceAccount = {
   projectId: firebaseServiceKey.project_id,
@@ -14,20 +15,8 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-const errorHandler = new Elysia()
-  .error("UNAUTHORIZED_ERROR", AuthenticationError)
-  .onError(({ code, error, set }) => {
-    switch (code) {
-      case "UNAUTHORIZED_ERROR":
-        set.status = 401;
-        const status = "error";
-        const message = error.toString().replace("UnauthorizedError: ", "");
-        return { status, message };
-    }
-  });
-
 const app = new Elysia()
-  .use(errorHandler)
+  .use(plugin)
   .guard(
     {
       beforeHandle: () => {

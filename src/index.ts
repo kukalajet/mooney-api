@@ -1,9 +1,9 @@
-import { Elysia } from "elysia";
 import { firebaseServiceKey } from "config";
+import { Elysia } from "elysia";
 import admin from "firebase-admin";
 import type { ServiceAccount } from "firebase-admin";
-import { AuthenticationError } from "src/lib/errors/exceptions";
 import { plugin } from "src/lib/errors";
+import { AuthenticationError } from "src/lib/errors/exceptions";
 
 const serviceAccount = {
   projectId: firebaseServiceKey.project_id,

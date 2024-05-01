@@ -1,4 +1,4 @@
-import Elysia from "elysia";
+import type Elysia from "elysia";
 
 import { AuthenticationError } from "./exceptions";
 
@@ -8,12 +8,14 @@ const plugin = (app: Elysia) =>
     .onError(({ code, error, set }) => {
       console.log("here");
       switch (code) {
-        case "UNAUTHORIZED_ERROR":
+        case "UNAUTHORIZED_ERROR": {
           console.log("here");
           set.status = 401;
           const status = "error";
           const message = error.toString();
+
           return { status, message };
+        }
       }
     });
 

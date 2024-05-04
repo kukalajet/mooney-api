@@ -6,13 +6,18 @@
     "dev": "bun run --watch src/index.ts",
     "db:migrate": "bunx prisma migrate dev",
     "db:generate": "bunx prisma generate",
-    "db:seed": "bun run prisma/seed.ts"
+    "db:studio": "bunx prisma studio",
+    "db:seed": "bun run prisma/seed.ts",
+    "auth:generate-test-token": "curl -X POST -H 'Content-Type: application/json' -d '{\"email\":\"user1@test.com\", \"password\":\"Test123!\", \"returnSecureToken\":true}' https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBe4pudzmNJkTrYHZLitXQ7jDUVNZ4Jdhw"
   },
   "dependencies": {
+    "@elysiajs/swagger": "^1.0.5",
     "@prisma/client": "^5.13.0",
-    "elysia": "latest"
+    "elysia": "latest",
+    "firebase-admin": "^12.1.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.7.2",
     "bun-types": "latest",
     "prisma": "^5.13.0"
   },

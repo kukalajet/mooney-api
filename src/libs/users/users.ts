@@ -7,7 +7,17 @@ const getAllUsers = async (
   return users;
 };
 
-const getUserById = async () => {};
+const getUserById = async (
+  id: string,
+  db: PrismaClient<Prisma.PrismaClientOptions, never, any>
+) => {
+  const first = await db.user.findFirst({ where: { id } });
+  if (!first) {
+    throw new Error("not found");
+  }
+
+  return first;
+};
 
 const createUser = async () => {};
 

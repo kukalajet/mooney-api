@@ -2,7 +2,7 @@ import type Elysia from "elysia";
 
 import { AuthenticationError } from "./exceptions";
 
-const plugin = (app: Elysia) =>
+const errors = (app: Elysia) =>
   app
     .error("UNAUTHORIZED_ERROR", AuthenticationError)
     .onError(({ code, error, set }) => {
@@ -19,4 +19,4 @@ const plugin = (app: Elysia) =>
       }
     });
 
-export { plugin };
+export { errors };

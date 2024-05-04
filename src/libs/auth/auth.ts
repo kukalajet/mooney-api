@@ -1,4 +1,6 @@
+import Elysia from "elysia";
 import admin from "firebase-admin";
+import { AuthenticationError } from "src/libs/errors";
 
 async function isAuthenticated(token: string) {
   try {
@@ -9,4 +11,19 @@ async function isAuthenticated(token: string) {
   }
 }
 
-export { isAuthenticated };
+const isAuthenticatedPlugin = new Elysia().onBeforeHandle(
+  { as: "global" },
+  async ({ headers }) => {
+    const token = headers.authorization?.split("Bearer ")[1];
+    if (!token) {
+      throw new AuthenticationError("Invalid token.");
+    }
+
+    const authenticated = await isAuthenticated(token);
+    if (!authenticated) {
+      throw new AuthenticationError("Invalid token.");
+    }
+  }
+);
+
+export { isAuthenticatedPlugin };

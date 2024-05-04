@@ -1,23 +1,20 @@
+import { PrismaClient } from "@prisma/client";
 import { Elysia } from "elysia";
-import { isAuthenticated } from "src/libs/auth";
-import { AuthenticationError, plugin } from "src/libs/errors";
+import { isAuthenticatedPlugin } from "src/libs/auth";
+import { errors } from "src/libs/errors";
 import { setup } from "src/setup";
+import { users } from "src/controllers";
+import swagger from "@elysiajs/swagger";
+
+const db = new PrismaClient();
 
 setup();
 
 const app = new Elysia()
-  .use(plugin)
-  .guard(
-    {
-      beforeHandle: async () => {
-        const token = "token";
-        if (!(await isAuthenticated(token))) {
-          throw new AuthenticationError("Invalid token");
-        }
-      },
-    },
-    (app) => app.get("/", () => "Hello Elysia")
-  )
+  .use(swagger({ path: "/swagger" }))
+  .use(errors)
+  .decorate("db", db)
+  .guard((app) => app.use(isAuthenticatedPlugin).use(users))
   .listen(3000);
 
 console.log(

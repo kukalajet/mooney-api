@@ -1,10 +1,10 @@
 import Elysia from "elysia";
-import { injectDatabase } from "src/libs/db";
+import { database } from "src/libs/db";
 import { getAllUsers } from "src/libs/users";
 
 const users = (app: Elysia) =>
   app
-    .use(injectDatabase)
+    .use(database)
     .get("/users", async ({ db }) => getAllUsers(db))
     .post("/users", () => "Hello Users")
     .delete("/users", () => "Hello Users");

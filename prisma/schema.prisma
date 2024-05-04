@@ -29,7 +29,7 @@ model Transaction {
 
 model Wallet {
   id           String        @id @default(uuid())
-  balance      Int
+  balance      Int           @default(0)
   user         User          @relation(fields: [userId], references: [id])
   userId       String
   transactions Transaction[]
@@ -45,13 +45,13 @@ enum WalletType {
 
 model TransactionCategory {
   id                        Int                      @id @default(autoincrement())
-  name                      String
+  name                      String                   @unique
   type                      TransactionCategoryType? @relation(fields: [transactionCategoryTypeId], references: [id])
   transactionCategoryTypeId Int
 }
 
 model TransactionCategoryType {
   id                    Int                   @id @default(autoincrement())
-  name                  String
+  name                  String                @unique
   transactionCategories TransactionCategory[]
 }

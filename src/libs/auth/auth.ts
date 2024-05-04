@@ -11,7 +11,7 @@ async function isAuthenticated(token: string) {
   }
 }
 
-const isAuthenticatedPlugin = new Elysia().onBeforeHandle(
+const auth = new Elysia().onBeforeHandle(
   { as: "global" },
   async ({ headers }) => {
     const token = headers.authorization?.split("Bearer ")[1];
@@ -26,4 +26,4 @@ const isAuthenticatedPlugin = new Elysia().onBeforeHandle(
   }
 );
 
-export { isAuthenticatedPlugin };
+export { auth };

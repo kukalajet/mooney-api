@@ -1,5 +1,5 @@
 import { Elysia } from "elysia";
-import { isAuthenticatedPlugin } from "src/libs/auth";
+import { auth } from "src/libs/auth";
 import { errors } from "src/libs/errors";
 import { setup } from "src/setup";
 import { users } from "src/controllers";
@@ -10,7 +10,7 @@ setup();
 const app = new Elysia()
   .use(swagger({ path: "/swagger" }))
   .use(errors)
-  .guard((app) => app.use(isAuthenticatedPlugin).use(users))
+  .guard((app) => app.use(auth).use(users))
   .listen(3000);
 
 console.log(

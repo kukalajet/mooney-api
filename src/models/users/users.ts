@@ -16,4 +16,4 @@ const models = (app: Elysia) =>
     .model("user-get-by-id-params", UserGetByIdParamsDto)
     .model("user-patch-body", UserPatchDto);
 
-export { models, UserSignUpBodyDto, UserGetByIdParamsDto };
+export { models };

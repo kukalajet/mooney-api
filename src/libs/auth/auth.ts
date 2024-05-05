@@ -26,4 +26,19 @@ const authenticated = new Elysia().onBeforeHandle(
   }
 );
 
-export { authenticated };
+const user = (app: Elysia) =>
+  app.derive(async ({ headers }) => {
+    const token = headers.authorization?.split("Bearer ")[1];
+    if (!token) {
+      throw new AuthenticationError("Invalid token.");
+    }
+
+    const decoded = await admin.auth().verifyIdToken(token);
+    if (!decoded) {
+      throw new AuthenticationError("Invalid token.");
+    }
+
+    return { user: decoded };
+  });
+
+export { authenticated, user };

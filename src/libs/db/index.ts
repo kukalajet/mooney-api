@@ -1,1 +1,2 @@
-export * from "./injectDatabase";
+export * from "./database-injector";
+export * from "./definitions";

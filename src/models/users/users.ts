@@ -1,16 +1,19 @@
 import { t } from "elysia";
 import type Elysia from "elysia";
 
-const SignUpBodyDto = t.Object({
+const UserSignUpBodyDto = t.Object({
   email: t.String({ format: "email" }),
   name: t.String({ minLength: 3 }),
 });
 
-const GetByIdParamsDto = t.Object({ id: t.String() });
+const UserGetByIdParamsDto = t.Object({ id: t.String() });
+
+const UserPatchDto = t.Partial(UserSignUpBodyDto);
 
 const models = (app: Elysia) =>
   app
-    .model("user-sign-up-body", SignUpBodyDto)
-    .model("user-get-by-id-params", GetByIdParamsDto);
+    .model("user-sign-up-body", UserSignUpBodyDto)
+    .model("user-get-by-id-params", UserGetByIdParamsDto)
+    .model("user-patch-body", UserPatchDto);
 
-export { models, SignUpBodyDto, GetByIdParamsDto };
+export { models, UserSignUpBodyDto, UserGetByIdParamsDto };

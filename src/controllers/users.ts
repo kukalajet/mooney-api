@@ -6,6 +6,7 @@ import {
   deleteUser,
   getAllUsers,
   getUserById,
+  updateUser,
 } from "src/libs/users";
 import { models } from "src/models/users";
 
@@ -18,8 +19,11 @@ const users = (app: Elysia) =>
     .group("/users", (app) =>
       app
         .get("/", ({ db }) => getAllUsers(db))
-        .post("/", ({ body, user, db }) => createUser(user.uid, body, db), {
+        .post("/", ({ user, body, db }) => createUser(user.uid, body, db), {
           body: "user-sign-up-body",
+        })
+        .patch("/", ({ user, body, db }) => updateUser(user.uid, body, db), {
+          body: "user-patch-body",
         })
         .delete("/", ({ user, db }) => deleteUser(user.uid, db))
         .get("/:id", ({ params: { id }, db }) => getUserById(id, db), {

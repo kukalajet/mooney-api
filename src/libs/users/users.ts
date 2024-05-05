@@ -29,8 +29,12 @@ const createUser = async (
   }
 };
 
-const updateUser = async (data: UpdateUserDto, db: PrismaDefaultArgsClient) => {
-  const { id, name, email } = data;
+const updateUser = async (
+  id: string,
+  data: UpdateUserDto,
+  db: PrismaDefaultArgsClient
+) => {
+  const { name, email } = data;
 
   try {
     const user = await db.user.update({

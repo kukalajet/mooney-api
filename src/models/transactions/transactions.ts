@@ -1,9 +1,11 @@
 import type Elysia from "elysia";
 import { t } from "elysia";
 
-const CreateTransactionBodyDto = t.Object({});
+const CreateTransactionBodyDto = t.Object({
+  walletId: t.String(),
+});
 
-const UpdateTransactionBodyDto = t.Object({});
+const UpdateTransactionBodyDto = t.Partial(CreateTransactionBodyDto);
 
 const GetAllWalletTransactionsParamsDto = t.Object({ walletId: t.String() });
 

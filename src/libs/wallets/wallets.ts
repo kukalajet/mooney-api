@@ -40,10 +40,11 @@ const createUserWallet = async (
 
 const updateUserWallet = async (
   userId: string,
+  walletId: string,
   data: UpdateWalletDto,
   db: PrismaDefaultArgsClient
 ) => {
-  const id = data.id;
+  const id = walletId;
   const where = { id, userId };
 
   try {

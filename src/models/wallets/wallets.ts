@@ -6,10 +6,9 @@ const CreateUserWalletBodyDto = t.Object({
   type: t.Enum(WalletType),
 });
 
-const UpdateUserWalletBodyDto = t.Composite([
-  t.Object({ id: t.String() }),
-  CreateUserWalletBodyDto,
-]);
+const UpdateUserWalletBodyDto = t.Partial(CreateUserWalletBodyDto);
+
+const UpdateUserWalletParamsDto = t.Object({ id: t.String() });
 
 const GetUserWalletByIdParamsDto = t.Object({ id: t.String() });
 
@@ -19,6 +18,7 @@ const models = (app: Elysia) =>
   app
     .model("user-wallet-create-body", CreateUserWalletBodyDto)
     .model("user-wallet-update-body", UpdateUserWalletBodyDto)
+    .model("user-wallet-update-params", UpdateUserWalletParamsDto)
     .model("user-wallet-get-by-id-params", GetUserWalletByIdParamsDto)
     .model("user-wallet-delete-by-id-params", DeleteUserWalletByIdParamsDto);
 

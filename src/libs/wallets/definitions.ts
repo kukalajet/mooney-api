@@ -4,6 +4,6 @@ type CreateWalletDto = {
   type: WalletType;
 };
 
-type UpdateWalletDto = Partial<CreateWalletDto> & { id: string };
+type UpdateWalletDto = Partial<CreateWalletDto>;
 
 export type { CreateWalletDto, UpdateWalletDto };

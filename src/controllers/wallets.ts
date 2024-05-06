@@ -25,9 +25,13 @@ const wallets = (app: Elysia) =>
           { body: "user-wallet-create-body" }
         )
         .patch(
-          "/",
-          ({ user, body, db }) => updateUserWallet(user.uid, body, db),
-          { body: "user-wallet-update-body" }
+          "/:id",
+          ({ user, body, params: { id }, db }) =>
+            updateUserWallet(user.uid, id, body, db),
+          {
+            body: "user-wallet-update-body",
+            params: "user-wallet-update-params",
+          }
         )
         .delete(
           "/:id",

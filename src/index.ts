@@ -1,7 +1,7 @@
 import { Elysia } from "elysia";
 import { errors } from "src/libs/errors";
 import { setup } from "src/setup";
-import { users, wallets } from "src/controllers";
+import { transactions, users, wallets } from "src/controllers";
 import swagger from "@elysiajs/swagger";
 
 setup();
@@ -11,6 +11,7 @@ const app = new Elysia()
   .use(errors)
   .use(users)
   .use(wallets)
+  .use(transactions)
   .listen(3000);
 
 console.log(

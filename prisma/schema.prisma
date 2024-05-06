@@ -14,15 +14,15 @@ datasource db {
 }
 
 model User {
-  id     String   @id
-  email  String   @unique
-  name   String?
-  Wallet Wallet[]
+  id      String   @id
+  email   String   @unique
+  name    String?
+  wallets Wallet[]
 }
 
 model Transaction {
   id       String   @id @default(uuid())
-  Wallet   Wallet?  @relation(fields: [walletId], references: [id])
+  wallet   Wallet?  @relation(fields: [walletId], references: [id])
   walletId String?
   date     DateTime @default(now())
 }

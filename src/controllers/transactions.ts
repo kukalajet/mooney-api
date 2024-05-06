@@ -32,13 +32,19 @@ const transactions = (app: Elysia) =>
       "/wallets/:walletId/transactions",
       ({ user, params: { walletId }, body, db }) =>
         createWalletTransaction(walletId, body, db),
-      { body: "wallet-transaction-create-body" }
+      {
+        body: "wallet-transaction-create-body",
+        params: "wallet-transaction-create-params",
+      }
     )
     .patch(
       "/wallets/:walletId/transactions/:transactionId",
       ({ user, params: { walletId, transactionId }, body, db }) =>
         updateWalletTransaction(user.uid, walletId, transactionId, body, db),
-      { body: "wallet-transaction-update-body" }
+      {
+        body: "wallet-transaction-update-body",
+        params: "wallet-transaction-update-params",
+      }
     )
     .delete(
       "/wallets/:walletId/transactions/:transactionId",

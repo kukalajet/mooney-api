@@ -8,11 +8,11 @@ const CreateUserWalletBodyDto = t.Object({
 
 const UpdateUserWalletBodyDto = t.Partial(CreateUserWalletBodyDto);
 
-const UpdateUserWalletParamsDto = t.Object({ id: t.String() });
+const UpdateUserWalletParamsDto = t.Object({ walletId: t.String() });
 
-const GetUserWalletByIdParamsDto = t.Object({ id: t.String() });
+const GetUserWalletByIdParamsDto = t.Object({ walletId: t.String() });
 
-const DeleteUserWalletByIdParamsDto = t.Object({ id: t.String() });
+const DeleteUserWalletByIdParamsDto = t.Object({ walletId: t.String() });
 
 const models = (app: Elysia) =>
   app

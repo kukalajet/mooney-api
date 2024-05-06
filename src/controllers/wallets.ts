@@ -25,22 +25,24 @@ const wallets = (app: Elysia) =>
           { body: "user-wallet-create-body" }
         )
         .patch(
-          "/:id",
-          ({ user, body, params: { id }, db }) =>
-            updateUserWallet(user.uid, id, body, db),
+          "/:walletId",
+          ({ user, body, params: { walletId }, db }) =>
+            updateUserWallet(user.uid, walletId, body, db),
           {
             body: "user-wallet-update-body",
             params: "user-wallet-update-params",
           }
         )
         .delete(
-          "/:id",
-          ({ user, params: { id }, db }) => deleteUserWallet(user.uid, id, db),
+          "/:walletId",
+          ({ user, params: { walletId }, db }) =>
+            deleteUserWallet(user.uid, walletId, db),
           { params: "user-wallet-get-by-id-params" }
         )
         .get(
-          "/:id",
-          ({ user, params: { id }, db }) => getUserWalletById(user.uid, id, db),
+          "/:walletId",
+          ({ user, params: { walletId }, db }) =>
+            getUserWalletById(user.uid, walletId, db),
           { params: "user-wallet-get-by-id-params" }
         )
     );
